@@ -11,7 +11,7 @@ export default function EmployeePage(props) {
       <Head>
         <title>Employees</title>
       </Head>
-      <h1>{employee.firstname}</h1>
+      <h1>{employee.first_name}</h1>
       <div>
         <p>${employee.job_title}</p>
         <p>${employee.salary}</p>
