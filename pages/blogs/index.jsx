@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Home({ blogs }) {
   function deleteBlog(id) {
-    fetch(`http://localhost:3000/api/blogs/articles/${id}`, {
+    fetch(`http://stock-next-yeeeehao.vercel.app/api/blogs/articles/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -41,7 +41,9 @@ export default function Home({ blogs }) {
   );
 }
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/blogs/articles/`);
+  const res = await fetch(
+    `http://stock-next-yeeeehao.vercel.app/api/blogs/articles/`
+  );
   const blogs = await res.json();
   // console.debug('blog 1', blogs)
   return { props: { blogs } };
