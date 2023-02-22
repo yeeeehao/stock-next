@@ -2,26 +2,26 @@ import Head from "next/head";
 import Link from "next/link";
 
 // Step 2: This component is rendered from the server (Server-Side Rendering) SSR
-export default function Product({ product }) {
-  console.log("product 2", product);
-  if (!product)
+export default function Blog({ stock }) {
+  console.log("stock 2", stock);
+  if (!stock)
     return (
       <div>
         <p>Product not found</p>
-        <Link href="/products">Back</Link>
+        <Link href="/product">Back</Link>
       </div>
     );
 
   return (
     <>
       <Head>
-        <title>{product.code}</title>
+        <title>{stock.code}</title>
       </Head>
       <h1>
-        {product.code} {product.code}
+        {stock.code} {stock.name}
       </h1>
-      <p>{product.price}</p>
-      <Link href="/products">Back</Link>
+      <p>{stock.price}</p>
+      <Link href="/product">Back</Link>
     </>
   );
 }
@@ -32,7 +32,7 @@ export async function getServerSideProps({ params }) {
   const res = await fetch(
     `http://stock-next-yeeeehao.vercel.app/api/stock/products/${params.id}`
   );
-  const product = await res.json();
-  console.debug("product 1", product);
-  return { props: { product } };
+  const stock = await res.json();
+  console.debug("stock 1", stock);
+  return { props: { stock } };
 }

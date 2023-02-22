@@ -26,7 +26,7 @@ export default function Home({ stock }) {
             return (
               <tr key={product._id}>
                 <td>
-                  <Link href={`/stock/${product._id}`}>
+                  <Link href={`/product/${product._id}`}>
                     {product.code} {product.name}
                   </Link>
                 </td>
@@ -49,6 +49,6 @@ export async function getServerSideProps() {
     `http://stock-next-yeeeehao.vercel.app/api/stock/products/`
   );
   const stock = await res.json();
-  // console.debug('product 1', stock)
+  // console.debug('stock 1', stock)
   return { props: { stock } };
 }
