@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Home({ stock }) {
   function deleteProduct(id) {
-    fetch(`http://stock-next-yeeeehao.vercel.app/api/stock/products/${id}`, {
+    fetch(`https://stock-next-yeeeehao.vercel.app/api/stock/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -46,7 +46,7 @@ export default function Home({ stock }) {
 }
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://stock-next-yeeeehao.vercel.app/api/stock/products/`
+    `https://stock-next-yeeeehao.vercel.app/api/stock/products/`
   );
   const stock = await res.json();
   // console.debug('stock 1', stock)

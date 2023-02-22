@@ -30,7 +30,7 @@ export default function Blog({ stock }) {
 export async function getServerSideProps({ params }) {
   console.debug("params", params);
   const res = await fetch(
-    `http://stock-next-yeeeehao.vercel.app/api/stock/products/${params.id}`
+    `https://stock-next-yeeeehao.vercel.app/api/stock/products/${params.id}`
   );
   const stock = await res.json();
   console.debug("stock 1", stock);
