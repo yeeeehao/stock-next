@@ -5,17 +5,23 @@ const connectionString =
 export default async function handler(req, res) {
   await connect(connectionString);
   console.log("req.method: ", req.method);
+  console.log("req.query.id", req.query.id);
 
+  const id = req.query.id;
   if (req.method === "GET") {
-    const docs = await Product.find();
-    res.status(200).json(docs);
-  } else if (req.method === "POST") {
-    console.log(typeof req.body);
-    // res.status(200).json(req.body)
-    const doc = await Product.create(req.body);
-    res.status(201).json(doc);
+    // Get only one document
+    const doc = await Product.findOne({ _id: id });
+    res.status(200).json(doc);
+  } else if (req.method === "DELETE") {
+    const deletedDoc = await Product.deleteOne({ _id: id });
+    res.status(200).json(deletedDoc);
+  } else if (req.method === "PUT") {
+    console.log("id", req.query.id);
+    console.log(req.body);
+    const updatedDoc = await Product.updateOne({ _id: id }, req.body);
+    res.status(200).json(updatedDoc);
   } else {
-    res.setHeader("Allow", ["GET", "POST"]);
+    res.setHeader("Allow", ["GET", "DELETE"]);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
