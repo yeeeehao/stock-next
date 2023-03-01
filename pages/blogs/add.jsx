@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -26,6 +27,7 @@ export default function AddBlogPage() {
 
   return (
     <div style={{ margin: "1rem" }}>
+      <Link href="/blogs">Back</Link>
       <form onSubmit={handleSubmit(saveBlog)}>
         <h1>New Blog</h1>
         <label htmlFor="title">Title</label>
