@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -16,35 +15,45 @@ export default function AddBlogPage() {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      redirect: "follow", // manual, *follow, error
+      // redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      // serialisation
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
-    const result = await response.json();
+    const result = await response.json(); // deserialise
+    if (result.error) {
+      alert("Error: " + result.error);
+    } else {
+      alert("Blog saved");
+      window.location.href = "/blogs";
+    }
     console.log(result);
     setData(JSON.stringify(data));
   };
 
   return (
     <div style={{ margin: "1rem" }}>
-      <Link href="/blogs">Back</Link>
       <form onSubmit={handleSubmit(saveBlog)}>
         <h1>New Blog</h1>
         <label htmlFor="title">Title</label>
         <br />
-        <input id="title" {...register("title")} placeholder="Blog Title" />
+        <input
+          id="title"
+          {...register("title", { required: true })}
+          placeholder="Blog Title"
+        />
         <br />
 
-        {/* <label htmlFor="category">Category</label>
+        <label htmlFor="category">Category</label>
         <select id="category" {...register("category", { required: true })}>
           <option value="">Select...</option>
-          <option value="A">News</option>
-          <option value="B">Life</option>
-        </select> */}
+          <option value="news">News</option>
+          <option value="life">Life</option>
+        </select>
         <br />
-        <label htmlFor="content">Content</label>
+        <label htmlFor="content">Category</label>
         <br />
-        <textarea id="text" {...register("content")} placeholder="content" />
+        <textarea id="text" {...register("content")} placeholder="About you" />
         <br />
         <input type="submit" />
         <p>{data}</p>
