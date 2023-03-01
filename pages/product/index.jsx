@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Home({ stock }) {
   function deleteProduct(id) {
-    fetch(`/api/stock/products/${id}`, {
+    fetch(`https://stock-next-yeeeehao.vercel.app/api/stock/products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

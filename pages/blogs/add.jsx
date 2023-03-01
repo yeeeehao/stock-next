@@ -51,7 +51,7 @@ export default function AddBlogPage() {
           <option value="life">Life</option>
         </select>
         <br />
-        <label htmlFor="content">Category</label>
+        <label htmlFor="content">Content</label>
         <br />
         <textarea id="text" {...register("content")} placeholder="About you" />
         <br />
