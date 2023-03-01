@@ -20,6 +20,9 @@ export default function Home({ blogs }) {
         <title>Blogs</title>
       </Head>
       <h1>Blogs</h1>
+      <p>
+        <Link href="/blogs/add">+New Blog</Link>
+      </p>
       <table>
         <tbody>
           {blogs.map((blog) => {
