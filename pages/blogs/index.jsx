@@ -31,7 +31,10 @@ export default function Home({ blogs }) {
                 <td>
                   <Link href={`/blogs/${blog._id}`}>{blog.title}</Link>
                 </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 <td>
+                  <Link href={`/blogs/update/${blog._id}`}>Update</Link>
+                  &nbsp;&nbsp;&nbsp;
                   <button onClick={() => deleteBlog(blog._id)}>Delete</button>
                 </td>
               </tr>
@@ -44,9 +47,7 @@ export default function Home({ blogs }) {
   );
 }
 export async function getServerSideProps() {
-  const res = await fetch(
-    `https://stock-next-yeeeehao.vercel.app/api/blogs/articles/`
-  );
+  const res = await fetch(`http://localhost:3000/api/blogs/articles/`);
   const blogs = await res.json();
   // console.debug('blog 1', blogs)
   return { props: { blogs } };

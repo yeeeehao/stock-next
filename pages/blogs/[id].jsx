@@ -28,7 +28,7 @@ export default function Blog({ blog }) {
 export async function getServerSideProps({ params }) {
   console.debug("params", params);
   const res = await fetch(
-    `http://stock-next-yeeeehao.vercel.app/api/blogs/articles/${params.id}`
+    `http://localhost:3000/api/blogs/articles/${params.id}`
   );
   const blog = await res.json();
   console.debug("blog 1", blog);
